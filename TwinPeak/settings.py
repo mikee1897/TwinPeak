@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'TwinPeak.login_required_middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'TwinPeak.urls'
@@ -120,7 +121,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+LOGIN_URL = '/login/'
+LOGIN_EXEMPT_URLS = (
+    r'^login/$',
+)
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
