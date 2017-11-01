@@ -1,51 +1,15 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light border">
-
-  <a class="navbar-brand" href="#">TwinPeak</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-
-      </li>
-    </ul>
-  </div>
-
-  <span>
-    <a class="navbar-brand" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{first_name}} {{last_name}}</a>
-    <a class="navbar-brand" href="#"><i class="fa fa-cogs" aria-hidden="true"></i></a>
-  </span>
-</nav>
+{% include 'accounts/admin_page_navbar.html' %}
 
 
 <div class="row ">
   <div class="col-3">
-
-    <ul class="nav flex-column border">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Product Development</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Material Planning</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Production</a>
-      </li>
-    </ul>
-
+    {% include 'accounts/admin_page_sidebar.html' %}
   </div>
   <div class="col-9">
     
-
-
   </div>
 </div>
 
