@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate, logout
 
 def homepage_redirect(request):
-	user_type = request.user.userprofile.user_type
+	"""	user_type = request.user.user_profile.user_type
 	if user_type == 'productdevelopment':
 		pass
 	elif user_type == 'materialplanning':
@@ -10,23 +10,28 @@ def homepage_redirect(request):
 	elif user_type == 'production':
 		pass
 	elif user_type == 'admin':
-		pass
+		print('admin')
+		pass"""
+	return render(request, 'accounts/admin_page.html')
 
-def login(request):
-	if request.method =='POST'
-		username = request.POST('username')
-		password = request.POST('password')
+def log_in(request):
+	if request.method == 'POST':
+		username = request.POST['username']
+		password = request.POST['password']
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
+			print('success')
 			return redirect('/') #goes to homepage_redirect
 		else:
 			args = {'login_error': 'true'}
-			return render(render, 'accounts/login.html', args)
+			return render(request, 'accounts/login.html', args)
+			print('error')
 	else:
-		return render(render, 'accounts/login.html')
+		return render(request, 'accounts/login.html')
+		print('non user request')
 
 
-def logout(request):
+def log_out(request):
 	logout(request)
 	return redirect('/') #middleware redirects to login
