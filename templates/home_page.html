@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
 {% block body %}
-{% include 'accounts/admin_page_navbar.html' %}
+{% include 'admin_page_navbar.html' %}
 
 
 <div class="row ">
   <div class="col-3">
-    {% include 'accounts/admin_page_sidebar.html' %}
+    {% include 'admin_page_sidebar.html' %}
   </div>
   <div class="col-9">
-    
+  	{% block main_item %}
+  	{% endblock %}
   </div>
 </div>
 

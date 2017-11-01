@@ -15,7 +15,7 @@ def homepage_redirect(request):
 	first_name = request.user.first_name
 	last_name = request.user.last_name
 	args = {'first_name': first_name, 'last_name':last_name}
-	return render(request, 'accounts/admin_page.html', args)
+	return render(request, 'home_page.html', args)
 
 def log_in(request):
 	if request.method == 'POST':
@@ -28,10 +28,10 @@ def log_in(request):
 			return redirect('/') #goes to homepage_redirect
 		else:
 			args = {'login_error': 'true'}
-			return render(request, 'accounts/login.html', args)
+			return render(request, 'login.html', args)
 			print('error')
 	else:
-		return render(request, 'accounts/login.html')
+		return render(request, 'login.html')
 		print('non user request')
 
 
