@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light border">
 
   <a class="navbar-brand" href="#">TwinPeak</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,26 +23,30 @@
 </nav>
 
 
-  <div class="row ">
-    <div class="col-3">
-		<ul class="nav nav-pills flex-column">
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">Home</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">Product Development</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">Material Planning</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">Production</a>
-		  </li>
-		</ul>
-    </div>
-    <div class="col-9">
-      
-    </div>
+<div class="row ">
+  <div class="col-3">
+
+    <ul class="nav flex-column border">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Product Development</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Material Planning</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Production</a>
+      </li>
+    </ul>
+
   </div>
+  <div class="col-9">
+    
+
+
+  </div>
+</div>
 
 {% endblock %}
