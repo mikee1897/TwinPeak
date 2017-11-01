@@ -12,7 +12,10 @@ def homepage_redirect(request):
 	elif user_type == 'admin':
 		print('admin')
 		pass"""
-	return render(request, 'accounts/admin_page.html')
+	first_name = request.user.first_name
+	last_name = request.user.last_name
+	args = {'first_name': first_name, 'last_name':last_name}
+	return render(request, 'accounts/admin_page.html', args)
 
 def log_in(request):
 	if request.method == 'POST':
