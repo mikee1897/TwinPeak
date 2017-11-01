@@ -1,68 +1,92 @@
+
 from django import forms
 from django.forms import ModelForm
-from productdevelopment.models import Deliverable
-from .models import Worker, Production_Line, Production_Line_Worker,\
-                    Production_Line_Deliverable, Finished_Bundle
+from .models import Customer, Order, Deliverable, Costing, Costing_Parts,\
+                    Operations, Bundle
 
-class WorkerForm(ModelForm):
-    worker_name = forms.CharField(max_length=500, required=True, widget=forms.
+class CustomerForm(ModelForm):
+    customer_name = forms.CharField(max_length=100, required=True, widget=forms.
     TextInput(attrs={'class': 'form-control uk-input uk-form-width-large\
-                     uk-form-success', 'placeholder': 'ex. Anakin Skywalker'}))
+                     uk-form-success', 'placeholder': 'ex. The First Order'}))
 
-    worker_details = forms.CharField(max_length=500, required=True, widget=forms.
-    Textarea(attrs={'class': 'form-control uk-input uk-form-width-large\
-                     uk-form-success', 'placeholder': 'ex. Hates Sand'}))
+    contact_name = forms.CharField(max_length=100, required=True, widget=forms.
+    TextInput(attrs={'class': 'form-control uk-input uk-form-width-large\
+                     uk-form-success', 'placeholder': 'ex. Kylo Ren'}))
 
-    worker_number =  forms.IntegerField(required=True, widget=forms.
+    contact_number = forms.IntegerField(required=True, widget=forms.
     NumberInput(attrs={'class': 'form-control uk-input uk-form-width-large\
                      uk-form-success uk-form-width-large uk-form-height-large',
                      'placeholder': 'ex. 09xxxxxxxxx/telephone'}))
-
-
-    class Meta:
-        model = Worker
-        fields = '__all__'
-
-class ProductionLineForm(ModelForm):
-    line_name = forms.CharField(max_length=500, required=True, widget=forms.
-    Textarea(attrs={'class': 'form-control uk-input uk-form-width-large\
-                     uk-form-success', 'placeholder': 'ex. Sewing Line'}))
-
-    line_number = forms.IntegerField(required=True, widget=forms.
-    NumberInput(attrs={'class': 'form-control uk-input uk-form-width-large\
+    email = forms.CharField(widget=forms.
+    EmailInput(attrs={'class': 'form-control uk-input uk-form-width-large\
                      uk-form-success uk-form-width-large uk-form-height-large',
-                     'placeholder': 'ex. 1'}))
+                     'placeholder': 'ex. Publicity@Lucasfilm.com'}))
 
+    description = forms.CharField(max_length=500, required=True, widget=forms.
+    Textarea(attrs={'class': 'form-control uk-form-width-large uk-text-area\
+                     uk-form-success ',
+                     'rows': '3',
+                     'placeholder': 'ex. Political and Military Faction, Likes Evil Looking Clothes'}))
 
     class Meta:
-        model = Production_Line
+        model = Customer
         fields = '__all__'
 
-class ProductionLineWorkerForm(forms.ModelForm):
-    available_workers = Production_Line_Worker.objects.filter(date_removed__isnull=True).values('worker__pk')
-    available = Worker.objects.exclude(pk__in=available_workers)
-    worker = forms.ModelChoiceField(queryset=available, required=True, widget=forms.
-        Select(attrs={'class': 'form-control uk-input uk-form-width-large\
-                uk-form-success uk-form-height-large\
-                uk-select',
-            }))
-    production_lines = Production_Line.objects.all()
-    production_line = forms.ModelChoiceField(queryset=production_lines, required=True, widget=forms.
-        Select(attrs={'class': 'form-control uk-input uk-form-width-large\
-                uk-form-success uk-form-height-large\
-                uk-select',
-            }))
+class BundleForm(ModelForm):
     class Meta:
-        model = Production_Line_Worker
-        fields = ('worker',
-                  'production_line')
-
-class ProductionLineDeliverableForm(ModelForm):
-    class Meta:
-        model = Production_Line_Deliverable
+        model = Bundle
         fields = '__all__'
 
-class FinishedBundleForm(ModelForm):
+
+class OrderForm(ModelForm):
+    customers = Customer.objects.all()
+    customer = forms.ModelChoiceField(queryset=customers, required=True, widget=forms.
+    Select(attrs={'class': 'form-control uk-input uk-form-width-large\
+                     uk-form-success'}))
+
+    program_name = forms.CharField(max_length=100, required=True, widget=forms.
+    TextInput(attrs={'class': 'form-control uk-input uk-form-width-large\
+                     uk-form-success', 'placeholder': 'ex. Put Something Here'}))
+
+    collection = forms.CharField(max_length=100, required=True, widget=forms.
+    TextInput(attrs={'class': 'form-control uk-input uk-form-width-large\
+                     uk-form-success',  'placeholder': 'ex. Put Something Here'}))
+
+    brand = forms.CharField(max_length=100, required=True, widget=forms.
+    TextInput(attrs={'class': 'form-control uk-input uk-form-width-large\
+                     uk-form-success',  'placeholder': 'ex. Put Something Here'}))
+
+    style_number = forms.CharField(max_length=100, required=True, widget=forms.
+    TextInput(attrs={'class': 'form-control uk-input uk-form-width-large\
+                     uk-form-success',  'placeholder': 'ex. Put Something Here'}))
+
+    description = forms.CharField(max_length=500, required=True, widget=forms.
+    Textarea(attrs={'class': 'form-control uk-form-width-large uk-text-area\
+                     uk-form-success ',
+                     'rows': '3',
+                     'placeholder': 'ex. Put Whatever Description You Feel Like Putting Here'}))
     class Meta:
-        model = Finished_Bundle
+        model = Order
+        fields = '__all__'
+
+
+class DeliverableForm(ModelForm):
+    class Meta:
+        model = Deliverable
+        fields = '__all__'
+
+#the specific item
+class CostingForm(ModelForm):
+    class Meta:
+        model = Costing
+        fields = '__all__'
+
+class CostingPartsForm(ModelForm):
+    class Meta:
+        model = Costing_Parts
+        fields = '__all__'
+
+class OperationsForm(ModelForm):
+    class Meta:
+        model = Operations
         fields = '__all__'
