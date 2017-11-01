@@ -1,3 +1,6 @@
-from django.shortcuts import render
+bfrom django.shortcuts import render, redirect
 
-# Create your views here.
+def add_customer(request):
+	if request.method == 'POST':
+		
+	else:
