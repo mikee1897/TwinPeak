@@ -15,9 +15,15 @@ def add_customer(request):
         if form.is_valid():
             form.save()
             form = CustomerForm()
+            first_name = request.user.first_name
+            last_name = request.user.last_name
             args = {'added': 'true', 'form': form}
             return render(request, 'productdevelopment/add_customer.html', args)
 
+        else:
+            args = {'invalid_data': 'true', 'form': form}
+            return render(request, 'productdevelopment/add_customer.html', args)
+            """todo here"""
     else:
         form = CustomerForm()
         args = {'form': form}
