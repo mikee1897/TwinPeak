@@ -123,9 +123,27 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
+
 LOGIN_EXEMPT_URLS = (
     r'^login/$',
 )
+
+MATERIAL_PLANNING_URLS = (
+# put material planning links here
+)
+
+PRODUCT_DEVELOPMENT_URLS = (
+# put product development urls here
+)
+
+PRODUCTION_URLS = (
+# put production urls here
+)
+
+ADMIN_URLS = (
+# admin has access to everything
+)
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [

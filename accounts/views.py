@@ -1,22 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
-def homepage_redirect(request):
-	"""	user_type = request.user.user_profile.user_type
-	if user_type == 'productdevelopment':
-		pass
-	elif user_type == 'materialplanning':
-		pass
-	elif user_type == 'production':
-		pass
-	elif user_type == 'admin':
-		print('admin')
-		pass"""
-	first_name = request.user.first_name
-	last_name = request.user.last_name
-	args = {'first_name': first_name, 'last_name':last_name}
-	return render(request, 'home_page.html', args)
-
 def log_in(request):
 	if request.method == 'POST':
 		username = request.POST['username']
