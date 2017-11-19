@@ -1,82 +1,102 @@
 from django.db import models
-from materialplanning.models import Part
-
 
 class Customer(models.Model):
-    customer_name = models.CharField(max_length=100)
-    contact_name = models.CharField(max_length=100)
-    description = models.CharField(max_length=500)
-    contact_number = models.IntegerField()
-    email = models.CharField(max_length=50, null=True, blank=True)
+	customer_name = models.CharField(max_length=100)
 
-    def __str__(self):
-        return  self.customer_name
+class Customer_Contact_Person(models.Model):
+	customer_name = models.ForeignKey(Customer, on_delete=models.CASCADE)
+	contact_name = models.CharField(max_length=100)
+	department = models.CharField(max_length=100)
 
-#customer has diff orders, but orders only have one customer -many to one relationship
-class Order(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    program_name = models.CharField(max_length=100)
-    collection = models.CharField(max_length=100)
-    brand = models.CharField(max_length=100)
-    style_number = models.CharField(max_length=100)
-    description = models.CharField(max_length=500)
+class Customer_Landline_Number(models.Model):
+	customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+	landline_number = models.CharField(max_length=50)
 
+class Customer_Mobile_Number(models.Model):
+	customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+	mobile_number = models.CharField(max_length=50)
 
-    def __str__(self):
-        return  self.program_name + " " + str(self.pk)
+class Customer_Email (models.Model):
+	customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+	email = models.CharField(max_length=100)
 
-class Deliverable(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
-    DELIVERABLE_TYPE_CHOICE = (
-        ('32A,','32A,'),
-        ('32B','32B'),
-        ('34A','34A'),
-        ('34B','34B'),
-        ('36A','36A'),
-        ('36B','36B'),
-    )
-    size = models.CharField(max_length=5,choices=DELIVERABLE_TYPE_CHOICE)
-    quantity = models.IntegerField()
+#not sure if this is needed; if kept, make optional
+class Customer_Brand(models.Model):
+	customer = models.ForeignKey(Customer)
+	brand_name = models.CharField(max_length=100)
 
-    def __str__(self):
-        return str(self.pk)
+class Customer_Collection(models.Model):
+	customer = models.ForeignKey(Customer)
+	brand = models.ForeignKey(Customer_Brand) #delete if class Customer_Brand is deleted
+	year = models.IntegerField()
+	season = models.CharField(max_length=100)
+
+class Style(models.Model):
+	#customer = models.ForeignKey(Customer)
+	#brand = models.ForeignKey(Customer_Brand)
+	collection = models.ForeignKey(Customer_Collection)
+	style_name = models.CharField(max_length=100)
+	style_ID = models.CharField(max_length=100)
+
+class Style_Size(models.Model):
+	style = models.ForeignKey(Style)
+	size = models.CharField(max_length=10)
+
+class Size_Specifications(models.Model):
+	size = models.ForeignKey(Style_Size)
+
+class Material_Cost(models.Model):
+	style_size = models.ForeignKey(Style_Size)
+	#import material details from Material Planning
+
+class Labor_Cost(models.Model):
+	style = models.ForeignKey(Style)
+	cutting_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	sewing_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	washing_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	finishing_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	examining_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	pressing_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	packaging_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	final_inspection_cost = models.DecimalField(max_digits=19, decimal_places=10)
+
+class Overhead_Cost(models.Model):
+	style = models.ForeignKey(Style)
+	rent_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	utility_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	paper_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	machine_maintenance_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	transportation_gas_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	transportation_maintenance_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	communication_cost = models.DecimalField(max_digits=19, decimal_places=10)
 
 class Operations(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    number = models.IntegerField()
-    operation = models.CharField(max_length=500)
-    material = models.CharField(max_length=500)
-    stitch = models.CharField(max_length=500)
-    description = models.CharField(max_length=500)
-    minutes = models.CharField(max_length=500)
-    machine = models.CharField(max_length=500)
+	style = models.ForeignKey(Style)
+	number = models.IntegerField()
+	operation_name = models.CharField(max_length=500)
+	material = models.CharField(max_length=500) #foreign key on class Material_Cost
+	stitch = models.CharField(max_length=500)
+	description = models.CharField(max_length=500)
+	minutes = models.IntegerField()
+	machine = models.CharField(max_length=500)
 
-    def __str__(self):
-        return  str(self.pk) + " " + str(self.operation)
+class Order(models.Model):
+	style = models.ForeignKey(Style)
+	purchase_order_number = models.IntegerField()
+	delivery_location = models.TextField()
 
-"""automatically created in views.py"""
-class Bundle(models.Model):
-    deliverable = models.ForeignKey(Deliverable)
-    quantity = models.DecimalField(max_digits=19, decimal_places=10)
-    finished =  models.NullBooleanField(blank=True)
-
-    def __str__(self):
-        return  str(self.deliverable.pk) + " " + str(self.quantity)
-
-class Costing(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    labor_cost = models.DecimalField(max_digits=19, decimal_places=10)
-    overhead_cost = models.DecimalField(max_digits=19, decimal_places=10)
-
-    def __str__(self):
-        return str(self.pk)
-
-class Costing_Parts(models.Model):
-    costing = models.ForeignKey(Costing, on_delete=models.CASCADE)
-    consumption = models.CharField(max_length=500)
-    part = models.ForeignKey(Part, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return  self.part.name + " " + str(self.pk)
+#change class name of Deliverable class to more appropriate term
+class Deliverable(models.Model):
+	order = models.ForeignKey(Order)
+	start_delivery_date = models.DateTimeField()
+	end_delivery_date = models.DateTimeField()
+	DELIVERABLE_TYPE_CHOICE = (
+		(’32A’, ’32A’),
+		(’32B’, ’32B’),
+		(’34A’, ’34A’),
+		(’34B’, ’34B’),
+		(’36A’, ’36A’),
+		(’36B’, ’36B’),
+	)
+	size = models.CharField(max_length=5, choices=DELIVERABLE_TYPE_CHOICE)
+	quantity = models.IntegerField()
