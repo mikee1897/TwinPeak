@@ -17,7 +17,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Part',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
                 ('price', models.DecimalField(decimal_places=10, max_digits=19)),
                 ('description', models.CharField(max_length=200)),
@@ -25,13 +26,15 @@ class Migration(migrations.Migration):
                 ('measurements', models.CharField(max_length=500)),
                 ('order_specifications', models.CharField(max_length=100)),
                 ('stock', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('part_type', models.CharField(choices=[('fabric', 'fabric'), ('accessory', 'accessory')], max_length=100)),
+                ('part_type', models.CharField(choices=[
+                 ('fabric', 'fabric'), ('accessory', 'accessory')], max_length=100)),
             ],
         ),
         migrations.CreateModel(
             name='Part_In',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('quantity', models.DecimalField(decimal_places=10, max_digits=19)),
                 ('date', models.DateField()),
             ],
@@ -39,7 +42,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Part_Out',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('quantity', models.DecimalField(decimal_places=10, max_digits=19)),
                 ('date', models.DateField()),
             ],
@@ -47,7 +51,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Purchase_Order',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('date_sent', models.DateField()),
                 ('terms_of_payment', models.CharField(max_length=100)),
                 ('prepared_by', models.CharField(max_length=100)),
@@ -58,20 +63,23 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Purchase_Order_Item',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('description', models.CharField(max_length=500)),
                 ('quantity', models.IntegerField()),
                 ('color', models.CharField(max_length=100)),
                 ('uom', models.CharField(max_length=20)),
                 ('date_due', models.DateField()),
                 ('unit_price', models.IntegerField()),
-                ('purchase_order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Purchase_Order')),
+                ('purchase_order', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Purchase_Order')),
             ],
         ),
         migrations.CreateModel(
             name='Supplier',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('supplier_name', models.CharField(max_length=100)),
                 ('contact_name', models.CharField(max_length=100)),
                 ('address', models.CharField(max_length=200)),
@@ -82,6 +90,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='purchase_order',
             name='supplier',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
         ),
     ]

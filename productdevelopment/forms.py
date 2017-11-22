@@ -2,7 +2,8 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Customer, Order, Deliverable,\
-                    Operations
+    Operations
+
 
 class CustomerForm(ModelForm):
     customer_name = forms.CharField(max_length=100, required=True)
@@ -31,16 +32,21 @@ class OrderForm(ModelForm):
     style_number = forms.CharField(max_length=100, required=True)
 
     description = forms.CharField(max_length=500, required=True)
+
     class Meta:
         model = Order
         fields = '__all__'
 
+
 class DeliverableForm(ModelForm):
+
     class Meta:
         model = Deliverable
         fields = '__all__'
 
+
 class OperationsForm(ModelForm):
+
     class Meta:
         model = Operations
         fields = '__all__'

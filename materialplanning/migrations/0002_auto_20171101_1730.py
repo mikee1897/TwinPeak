@@ -19,21 +19,25 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='part_out',
             name='deliverable',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Deliverable'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Deliverable'),
         ),
         migrations.AddField(
             model_name='part_out',
             name='part',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Part'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Part'),
         ),
         migrations.AddField(
             model_name='part_in',
             name='part',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Part'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Part'),
         ),
         migrations.AddField(
             model_name='part',
             name='supplier',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
         ),
     ]

@@ -18,16 +18,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Finished_Bundle',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('date_finished', models.DateTimeField()),
-                ('bundle', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Bundle')),
-                ('operation', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Operations')),
+                ('bundle', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Bundle')),
+                ('operation', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Operations')),
             ],
         ),
         migrations.CreateModel(
             name='Production_Line',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('line_name', models.CharField(max_length=500)),
                 ('line_number', models.IntegerField()),
             ],
@@ -35,25 +39,32 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Production_Line_Deliverable',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deliverable', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Deliverable')),
-                ('operations', models.ManyToManyField(blank=True, to='productdevelopment.Operations')),
-                ('production_line', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='production.Production_Line')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('deliverable', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Deliverable')),
+                ('operations', models.ManyToManyField(
+                    blank=True, to='productdevelopment.Operations')),
+                ('production_line', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='production.Production_Line')),
             ],
         ),
         migrations.CreateModel(
             name='Production_Line_Worker',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('date_added', models.DateTimeField(auto_now_add=True)),
                 ('date_removed', models.DateTimeField(blank=True, null=True)),
-                ('production_line', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='production.Production_Line')),
+                ('production_line', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='production.Production_Line')),
             ],
         ),
         migrations.CreateModel(
             name='Worker',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('worker_name', models.CharField(max_length=500)),
                 ('worker_details', models.CharField(max_length=500)),
                 ('worker_number', models.IntegerField()),
@@ -62,11 +73,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='production_line_worker',
             name='worker',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='production.Worker'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='production.Worker'),
         ),
         migrations.AddField(
             model_name='finished_bundle',
             name='production_line_worker',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='production.Worker'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='production.Worker'),
         ),
     ]

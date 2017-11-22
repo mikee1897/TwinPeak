@@ -19,11 +19,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserProfile',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user_type', models.CharField(choices=[('materialplanning', 'materialplanning'), ('productdevelopment', 'productdevelopment'), ('production', 'production'), ('admin', 'admin')], default='admin', max_length=100)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('user_type', models.CharField(choices=[('materialplanning', 'materialplanning'), ('productdevelopment', 'productdevelopment'), (
+                    'production', 'production'), ('admin', 'admin')], default='admin', max_length=100)),
                 ('description', models.CharField(default='', max_length=100)),
                 ('phone', models.IntegerField(default=0)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

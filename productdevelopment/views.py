@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import CustomerForm, OrderForm, DeliverableForm, \
-                     OperationsForm
+    OperationsForm
 from .models import Customer, Order, Deliverable, \
-                    Operations
+    Operations
 # from materialplanning.models import Part
 import time
 from datetime import date, datetime

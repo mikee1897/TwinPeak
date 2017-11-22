@@ -18,7 +18,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Bundle',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('quantity', models.DecimalField(decimal_places=10, max_digits=19)),
                 ('finished', models.NullBooleanField()),
             ],
@@ -26,24 +27,31 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Costing',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('labor_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('overhead_cost', models.DecimalField(decimal_places=10, max_digits=19)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('labor_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('overhead_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
             ],
         ),
         migrations.CreateModel(
             name='Costing_Parts',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('consumption', models.CharField(max_length=500)),
-                ('costing', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Costing')),
-                ('part', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Part')),
+                ('costing', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Costing')),
+                ('part', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Part')),
             ],
         ),
         migrations.CreateModel(
             name='Customer',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('customer_name', models.CharField(max_length=100)),
                 ('contact_name', models.CharField(max_length=100)),
                 ('description', models.CharField(max_length=500)),
@@ -54,17 +62,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Deliverable',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('start_date', models.DateTimeField()),
                 ('end_date', models.DateTimeField()),
-                ('size', models.CharField(choices=[('32A,', '32A,'), ('32B', '32B'), ('34A', '34A'), ('34B', '34B'), ('36A', '36A'), ('36B', '36B')], max_length=5)),
+                ('size', models.CharField(choices=[('32A,', '32A,'), ('32B', '32B'), (
+                    '34A', '34A'), ('34B', '34B'), ('36A', '36A'), ('36B', '36B')], max_length=5)),
                 ('quantity', models.IntegerField()),
             ],
         ),
         migrations.CreateModel(
             name='Operations',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('number', models.IntegerField()),
                 ('operation', models.CharField(max_length=500)),
                 ('material', models.CharField(max_length=500)),
@@ -77,33 +88,39 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Order',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('program_name', models.CharField(max_length=100)),
                 ('collection', models.CharField(max_length=100)),
                 ('brand', models.CharField(max_length=100)),
                 ('style_number', models.CharField(max_length=100)),
                 ('description', models.CharField(max_length=500)),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Customer')),
+                ('customer', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Customer')),
             ],
         ),
         migrations.AddField(
             model_name='operations',
             name='order',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Order'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Order'),
         ),
         migrations.AddField(
             model_name='deliverable',
             name='order',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Order'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Order'),
         ),
         migrations.AddField(
             model_name='costing',
             name='order',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Order'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Order'),
         ),
         migrations.AddField(
             model_name='bundle',
             name='deliverable',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Deliverable'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Deliverable'),
         ),
     ]
