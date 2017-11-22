@@ -47,11 +47,11 @@ class LoginRequiredMiddleware:
 				if not any(url.match(path) for url in ADMIN_URLS):
 					return redirect('/404') # TODO: 404 page
 			elif user_type == 'materialplanning':
-				if not any(url.match(path) for url in ADMIN_URLS):
+				if not any(url.match(path) for url in MATERIAL_PLANNING_URLS):
 					return redirect('/404') # TODO: 404 page
 			elif user_type == 'productdevelopment':
-				if not any(url.match(path) for url in ADMIN_URLS):
+				if not any(url.match(path) for url in PRODUCT_DEVELOPMENT_URLS):
 					return redirect('/404') # TODO: 404 page
 			elif user_type == 'production':
-				if not any(url.match(path) for url in ADMIN_URLS):
+				if not any(url.match(path) for url in PRODUCTION_URLS):
 					return redirect('/404') # TODO: 404 page
