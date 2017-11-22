@@ -3,11 +3,43 @@ from productdevelopment.models import Order, Deliverable, Operations, Bundle
 
 class Worker(models.Model):
     worker_name = models.CharField(max_length=500)
-    worker_details = models.CharField(max_length=500)
-    worker_number = models.IntegerField()
 
-    def __str__(self):
-        return  self.worker_name + " " + str(self.pk)
+class Worker_Landline_Number(models.Model):
+    worker = models.ForeignKey(Worker)
+    landline_number = models.CharField(max_length=50)
+
+class Worker_Mobile_Number(models.Model):
+    worker = models.ForeignKey(Worker)
+    mobile_number = models.CharField(max_length=50)
+
+class Worker_Address(models.Model):
+    worker = models.ForeignKey(Worker)
+    address = models.TextField()
+
+class Work_Order(models.Model):
+    order = models.ForeignKey(Order)
+    quantity = models.IntegerField()
+    #add other details later
+
+class Bundle(models.Model):
+    work_order = models.ForeignKey(Work_Order)
+    quantity = models.IntegerField()
+
+class Bundle_Finished_Operations(models.Model):
+    bundle = models.ForeignKey(Bundle)
+    operation = models.ForeignKey(Operations) #not sure if this is necessary since we can trace Bundle -> Work Order -> Order -> Style and Operations -> Style
+    worker = models.ForeignKey(Worker)
+    date_done = models.DateTimeField()
+    date_updated = models.DateTimeField()
+    #need a field showing details of user that made the update
+
+
+
+
+
+
+
+
 
 class Production_Line(models.Model):
     line_name = models.CharField(max_length=500)

@@ -1,11 +1,11 @@
 from django.db import models
 
 class Customer(models.Model):
-	customer_name = models.CharField(max_length=100)
+	customer_name = models.CharField(max_length=500)
 
 class Customer_Contact_Person(models.Model):
 	customer_name = models.ForeignKey(Customer, on_delete=models.CASCADE)
-	contact_name = models.CharField(max_length=100)
+	contact_name = models.CharField(max_length=500)
 	department = models.CharField(max_length=100)
 
 class Customer_Landline_Number(models.Model):
@@ -18,25 +18,25 @@ class Customer_Mobile_Number(models.Model):
 
 class Customer_Email (models.Model):
 	customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-	email = models.CharField(max_length=100)
+	email = models.CharField(max_length=500)
 
 #not sure if this is needed; if kept, make optional
 class Customer_Brand(models.Model):
 	customer = models.ForeignKey(Customer)
-	brand_name = models.CharField(max_length=100)
+	brand_name = models.CharField(max_length=500)
 
 class Customer_Collection(models.Model):
 	customer = models.ForeignKey(Customer)
 	brand = models.ForeignKey(Customer_Brand) #delete if class Customer_Brand is deleted
 	year = models.IntegerField()
-	season = models.CharField(max_length=100)
+	season = models.CharField(max_length=500)
 
 class Style(models.Model):
 	#customer = models.ForeignKey(Customer)
 	#brand = models.ForeignKey(Customer_Brand)
 	collection = models.ForeignKey(Customer_Collection)
-	style_name = models.CharField(max_length=100)
-	style_ID = models.CharField(max_length=100)
+	style_name = models.CharField(max_length=500)
+	style_ID = models.CharField(max_length=500)
 
 class Style_Size(models.Model):
 	style = models.ForeignKey(Style)
@@ -83,7 +83,7 @@ class Operations(models.Model):
 class Order(models.Model):
 	style = models.ForeignKey(Style)
 	purchase_order_number = models.IntegerField()
-	delivery_location = models.TextField()
+	delivery_address = models.TextField()
 
 #change class name of Deliverable class to more appropriate term
 class Deliverable(models.Model):
