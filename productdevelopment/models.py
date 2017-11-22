@@ -91,12 +91,12 @@ class Deliverable(models.Model):
 	start_delivery_date = models.DateTimeField()
 	end_delivery_date = models.DateTimeField()
 	DELIVERABLE_TYPE_CHOICE = (
-		(’32A’, ’32A’),
-		(’32B’, ’32B’),
-		(’34A’, ’34A’),
-		(’34B’, ’34B’),
-		(’36A’, ’36A’),
-		(’36B’, ’36B’),
+		('32A', '32A'),
+		('32B', '32B'),
+		('34A', '34A'),
+		('34B', '34B'),
+		('36A', '36A'),
+		('36B', '36B'),
 	)
 	size = models.CharField(max_length=5, choices=DELIVERABLE_TYPE_CHOICE)
 	quantity = models.IntegerField()

@@ -1,5 +1,5 @@
 from django.db import models
-from productdevelopment.models import Order, Deliverable, Operations, Bundle
+from productdevelopment.models import Order, Deliverable, Operations
 
 class Worker(models.Model):
     worker_name = models.CharField(max_length=500)

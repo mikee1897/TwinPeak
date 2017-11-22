@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect
-from .forms import CustomerForm, OrderForm, DeliverableForm, CostingForm, \
-                    CostingPartsForm, OperationsForm, BundleForm
-from .models import Customer, Order, Deliverable, Costing, Costing_Parts, \
-                    Operations, Bundle
-from materialplanning.models import Part
+from .forms import CustomerForm, OrderForm, DeliverableForm, \
+                     OperationsForm
+from .models import Customer, Order, Deliverable, \
+                    Operations
+# from materialplanning.models import Part
 import time
 from datetime import date, datetime
 import math
 from decimal import *
 
-def add_customer(request):
+"""def add_customer(request):
     if request.method == "POST":
         form = CustomerForm(request.POST)
         if form.is_valid():
@@ -23,7 +23,7 @@ def add_customer(request):
         else:
             args = {'invalid_data': 'true', 'form': form}
             return render(request, 'productdevelopment/add_customer.html', args)
-            """todo here"""
+
     else:
         form = CustomerForm()
         args = {'form': form}
@@ -38,7 +38,7 @@ def add_order(request):
             order = orderForm.save()
             order = Order.objects.filter(pk=order.pk)
             args.update({'order': 'true'})
-            """deliverables"""
+
 
             for count in range(len(request.POST.getlist('start_date'))):
                 start_date = request.POST.getlist('start_date')[count]
@@ -59,7 +59,6 @@ def add_order(request):
 
                 if deliverable.is_valid():
                     deliverable = deliverable.save()
-                    """if deliverable is valid, make bundles for it"""
                     surplus = deliverable.quantity%50;
                     bundles = math.floor(deliverable.quantity/50)
                     deliverable = Deliverable.objects.filter(pk=deliverable.pk)
@@ -102,7 +101,6 @@ def add_order(request):
 
 
 
-            """costing"""
             costingFormData = { 'order' : order,
                                 'labor_cost' : Decimal(request.POST.getlist('labor_cost')[0]),
                                 'overhead_cost' : Decimal(request.POST.getlist('overhead_cost')[0]),
@@ -117,7 +115,7 @@ def add_order(request):
                 print("COSTING SAVE")
                 parts = Part.objects.all();
 
-                """costing parts"""
+
                 for count in range(len(request.POST.getlist('part'))):
                     costingPartsFormData = { 'costing' : costing,
                                              'consumption' : request.POST.getlist('consumption')[count],
@@ -129,7 +127,7 @@ def add_order(request):
                         costingPart.save()
                         print("COSTING PART SAVE")
 
-            """operations"""
+
             for count in range(len(request.POST.getlist('number'))):
                 operationsFormData = { 'order' : order,
                                        'number' : request.POST.getlist('number')[count],
@@ -155,4 +153,4 @@ def add_order(request):
         form = OrderForm()
         parts = Part.objects.all()
         args = {'form': form, 'parts': parts}
-        return render(request, 'productdevelopment/add_order.html', args)
+        return render(request, 'productdevelopment/add_order.html', args)"""

@@ -5,10 +5,10 @@ from django.contrib.auth import login, authenticate, logout
 Authentication redirect and users having invalid permission is done by
 Twinpeak/TwinPeak/login_required_middleware.py
 """
-def user_type_redirect:
+def user_type_redirect(request):
 	user_type = request.user.UserProfile.user_type
 	if user_type == 'materialplanning':
-		return //
+		pass
 
 def log_in(request):
 	if request.method == 'POST':

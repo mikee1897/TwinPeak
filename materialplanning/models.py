@@ -24,8 +24,8 @@ class Raw_Material(models.Model):
 	supplier = models.ForeignKey(Supplier)
 	raw_material_name = models.CharField(max_length=100)
 	price = models.DecimalField(max_digits=19, decimal_places=10)
-    quantity = models.DecimalField(max_digits=19, decimal_places=10)
-
+	quantity = models.DecimalField(max_digits=19, decimal_places=10)
+	
 class Raw_Material_Entry(models.Model):
 	raw_material = models.ForeignKey(Raw_Material)
 	quantity = models.DecimalField(max_digits=19, decimal_places=10)
