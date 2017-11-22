@@ -1,8 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
+"""Redirect is handled by this view, to give users appropriate template.
+Authentication redirect and users having invalid permission is done by
+Twinpeak/TwinPeak/login_required_middleware.py
+"""
+def user_type_redirect:
+	user_type = request.user.UserProfile.user_type
+	if user_type == 'materialplanning':
+		return //
 
-// TODO: make '/' redirect
 def log_in(request):
 	if request.method == 'POST':
 		username = request.POST['username']
