@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
+
+// TODO: make '/' redirect
 def log_in(request):
 	if request.method == 'POST':
 		username = request.POST['username']
