@@ -6,11 +6,13 @@ Authentication redirect and users having invalid permission is done by
 Twinpeak/TwinPeak/login_required_middleware.py
 """
 
-
+"""Acts as the homepage /"""
 def user_type_redirect(request):
-    user_type = request.user.UserProfile.user_type
-    if user_type == 'materialplanning':
-        pass
+    # user_type = request.user.UserProfile.user_type
+    # if user_type == 'materialplanning':
+    #   pass
+    # currently returns the admin page
+    return render(request, 'accounts/admin.html')
 
 
 def log_in(request):
@@ -20,14 +22,12 @@ def log_in(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            print('success')
             return redirect('/')  # goes to homepage_redirect
         else:
             args = {'login_error': 'true'}
-            return render(request, 'login.html', args)
-            print('error')
+            return render(request, 'accounts/login.html', args)
     else:
-        return render(request, 'login.html')
+        return render(request, 'accounts/login.html')
         print('non user request')
 
 

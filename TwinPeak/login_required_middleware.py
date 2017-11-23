@@ -45,7 +45,10 @@ class LoginRequiredMiddleware:
             if not any(url.match(path) for url in EXEMPT_URLS):
                 return redirect(settings.LOGIN_URL)
         else:
-            user_type = request.user.UserProfile.user_type
+            user_type = ''
+            if hasattr(request.user, 'UserProfile'):
+                user_type = request.user.UserProfile.user_type
+
             if user_type == 'admin':
                 if not any(url.match(path) for url in ADMIN_URLS):
                     return redirect('/404')  # TODO: 404 page
