@@ -105,6 +105,7 @@ class Operations(models.Model):
 class Order(models.Model):
     style = models.ForeignKey(Style)
     purchase_order_number = models.IntegerField()
+    # image field - optional
     delivery_address = models.TextField()
 
 # change class name of Deliverable class to more appropriate term

@@ -26,6 +26,9 @@ def log_in(request):
         else:
             args = {'login_error': 'true'}
             return render(request, 'accounts/login.html', args)
+    elif request.method == 'GET' and request.user.is_authenticated:
+        print('asd')
+        return redirect('/')
     else:
         return render(request, 'accounts/login.html')
         print('non user request')
