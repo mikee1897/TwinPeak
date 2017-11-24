@@ -21,7 +21,8 @@ class UserProfile(models.Model):
     def __str__(self):
         return "username:" + self.user.username + "     pk:" + str(self.pk)
 
-"""creates a user profile when a new user is made with the default django auth"""
+"""creates a user profile when a new user is
+     made with the default django auth"""
 
 
 def create_profile(sender, **kwargs):

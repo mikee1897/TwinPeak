@@ -30,7 +30,7 @@ class Customer_Email (models.Model):
 
 # not sure if this is needed; if kept, make optional
 
-
+"""
 class Customer_Brand(models.Model):
     customer = models.ForeignKey(Customer)
     brand_name = models.CharField(max_length=500)
@@ -42,15 +42,17 @@ class Customer_Collection(models.Model):
     brand = models.ForeignKey(Customer_Brand)
     year = models.IntegerField()
     season = models.CharField(max_length=500)
+"""
 
 
 class Style(models.Model):
-    #customer = models.ForeignKey(Customer)
-    #brand = models.ForeignKey(Customer_Brand)
-    collection = models.ForeignKey(Customer_Collection)
+    # customer = models.ForeignKey(Customer)
+    # brand = models.ForeignKey(Customer_Brand)
+    # collection = models.ForeignKey(Customer_Collection)
     style_name = models.CharField(max_length=500)
-    style_ID = models.CharField(max_length=500)
-
+    style_id = models.CharField(max_length=500)
+    collection_name = models.CharField(max_length=500)
+    year = models.DateField()
 
 class Style_Size(models.Model):
     style = models.ForeignKey(Style)
