@@ -126,6 +126,7 @@ LOGIN_REDIRECT_URL = '/'
 
 LOGIN_EXEMPT_URLS = (
     r'^login/$',
+    r'^admin/$',
 )
 
 MATERIAL_PLANNING_URLS = (
@@ -142,6 +143,7 @@ PRODUCTION_URLS = (
 
 ADMIN_URLS = (
     # admin has access to everything
+    r'^admin/$',
 )
 
 STATIC_URL = '/static/'

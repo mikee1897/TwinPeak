@@ -6,7 +6,7 @@ Authentication redirect and users having invalid permission is done by
 Twinpeak/TwinPeak/login_required_middleware.py
 """
 
-"""Acts as the homepage /"""
+
 def user_type_redirect(request):
     # user_type = request.user.UserProfile.user_type
     # if user_type == 'materialplanning':
@@ -26,9 +26,6 @@ def log_in(request):
         else:
             args = {'login_error': 'true'}
             return render(request, 'accounts/login.html', args)
-    elif request.method == 'GET' and request.user.is_authenticated:
-        print('asd')
-        return redirect('/')
     else:
         return render(request, 'accounts/login.html')
         print('non user request')

@@ -3,14 +3,21 @@
 <head>
 	<title>{% block title %}{% endblock %}</title>
 	{% load staticfiles %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/semantic.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'dist/semantic.min.css' %}">
 </head>
 <body>
-	<div class="ui container">
-		{% block body %}
-		{% endblock %}	
-	</div>
-<script type="text/javascript" src="{% static 'js/jquery-3.2.1.slim.min.js' %"></script>
-<script type="text/javascript" src="{% static 'semantic.min.js' %"></script>
+
+
+
+<body>
+    {% block navbar %}
+	{% endblock %}
+
+  	{% block body %}
+	{% endblock %}
+</body>
+
+<script type="text/javascript" src="{% static 'js/jquery-3.2.1.slim.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'dist/semantic.min.js' %}"></script>
 </body>
 </html>

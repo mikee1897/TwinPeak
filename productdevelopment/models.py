@@ -6,23 +6,26 @@ class Customer(models.Model):
 
 
 class Customer_Contact_Person(models.Model):
-    customer_name = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     contact_name = models.CharField(max_length=500)
     department = models.CharField(max_length=100)
 
 
 class Customer_Landline_Number(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(
+        Customer_Contact_Person, on_delete=models.CASCADE)
     landline_number = models.CharField(max_length=50)
 
 
 class Customer_Mobile_Number(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(
+        Customer_Contact_Person, on_delete=models.CASCADE)
     mobile_number = models.CharField(max_length=50)
 
 
 class Customer_Email (models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(
+        Customer_Contact_Person, on_delete=models.CASCADE)
     email = models.CharField(max_length=500)
 
 # not sure if this is needed; if kept, make optional

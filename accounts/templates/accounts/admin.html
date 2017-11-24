@@ -1,5 +1,25 @@
 {% extends 'base.html' %}
 
-{% block body %}
+{% block navbar %}
+<div class="ui massive menu">
+	<div class="">
+		<a class="item" href="/" title="">Twin Peak</a>
+	</div>
 
-{% endblock %}
+	<div class="ui simple dropdown item">
+		Product Development 
+		<i class="dropdown icon"></i>
+		<div class="menu">
+	  		<a class="item" href="/add_a_customer">Add a customer</a>
+	  		<a class="item" href="#">Edit a customer</a>
+	  		<a class="item" href="#">Add new style</a>
+		</div>
+	</div>
+
+	<div class="right menu">
+		<a class="ui item" href="/logout">
+	  		Logout
+		</a>
+	</div>
+</div>
+{% endblock%}
