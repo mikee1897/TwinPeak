@@ -55,21 +55,21 @@ class Style(models.Model):
     year = models.DateField()
 
 class Style_Size(models.Model):
-    style = models.ForeignKey(Style)
+    style = models.ForeignKey(Style, on_delete=models.CASCADE)
     size = models.CharField(max_length=10)
 
 
 class Size_Specifications(models.Model):
-    size = models.ForeignKey(Style_Size)
+    size = models.ForeignKey(Style_Size, on_delete=models.CASCADE)
 
 
 class Material_Cost(models.Model):
-    style_size = models.ForeignKey(Style_Size)
+    style_size = models.ForeignKey(Style_Size, on_delete=models.CASCADE)
     # import material details from Material Planning
 
 
 class Labor_Cost(models.Model):
-    style = models.ForeignKey(Style)
+    style = models.ForeignKey(Style, on_delete=models.CASCADE)
     cutting_cost = models.DecimalField(max_digits=19, decimal_places=10)
     sewing_cost = models.DecimalField(max_digits=19, decimal_places=10)
     washing_cost = models.DecimalField(max_digits=19, decimal_places=10)
@@ -82,7 +82,7 @@ class Labor_Cost(models.Model):
 
 
 class Overhead_Cost(models.Model):
-    style = models.ForeignKey(Style)
+    style = models.ForeignKey(Style, on_delete=models.CASCADE)
     rent_cost = models.DecimalField(max_digits=19, decimal_places=10)
     utility_cost = models.DecimalField(max_digits=19, decimal_places=10)
     paper_cost = models.DecimalField(max_digits=19, decimal_places=10)
@@ -96,7 +96,7 @@ class Overhead_Cost(models.Model):
 
 
 class Operations(models.Model):
-    style = models.ForeignKey(Style)
+    style = models.ForeignKey(Style, on_delete=models.CASCADE)
     number = models.IntegerField()
     operation_name = models.CharField(max_length=500)
     # foreign key on class Material_Cost
@@ -108,7 +108,7 @@ class Operations(models.Model):
 
 
 class Order(models.Model):
-    style = models.ForeignKey(Style)
+    style = models.ForeignKey(Style, on_delete=models.CASCADE)
     purchase_order_number = models.IntegerField()
     # image field - optional
     delivery_address = models.TextField()
@@ -117,7 +117,7 @@ class Order(models.Model):
 
 
 class Deliverable(models.Model):
-    order = models.ForeignKey(Order)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     start_delivery_date = models.DateTimeField()
     end_delivery_date = models.DateTimeField()
     DELIVERABLE_TYPE_CHOICE = (
