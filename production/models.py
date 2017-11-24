@@ -6,14 +6,9 @@ class Worker(models.Model):
     worker_name = models.CharField(max_length=500)
 
 
-class Worker_Landline_Number(models.Model):
+class Worker_Contact_Number(models.Model):
     worker = models.ForeignKey(Worker)
     landline_number = models.CharField(max_length=50)
-
-
-class Worker_Mobile_Number(models.Model):
-    worker = models.ForeignKey(Worker)
-    mobile_number = models.CharField(max_length=50)
 
 
 class Worker_Address(models.Model):
