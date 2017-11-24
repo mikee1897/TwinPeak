@@ -1,52 +1,39 @@
 
 from django import forms
 from django.forms import ModelForm
-from .models import Customer, Order, Deliverable,\
-    Operations
+from .models import *
 
 
 class CustomerForm(ModelForm):
-    customer_name = forms.CharField(max_length=100, required=True)
-
-    contact_name = forms.CharField(max_length=100, required=True)
-
-    contact_number = forms.IntegerField(required=True)
-    email = forms.CharField()
-    description = forms.CharField(max_length=500, required=True)
 
     class Meta:
         model = Customer
         fields = '__all__'
 
 
-class OrderForm(ModelForm):
-    customers = Customer.objects.all()
-    customer = forms.ModelChoiceField(queryset=customers, required=True)
-
-    program_name = forms.CharField(max_length=100, required=True,)
-
-    collection = forms.CharField(max_length=100, required=True)
-
-    brand = forms.CharField(max_length=100, required=True)
-
-    style_number = forms.CharField(max_length=100, required=True)
-
-    description = forms.CharField(max_length=500, required=True)
+class CustomerContactPersonForm(ModelForm):
 
     class Meta:
-        model = Order
+        model = Customer_Contact_Person
         fields = '__all__'
 
 
-class DeliverableForm(ModelForm):
+class CustomerLandlineNumberForm(ModelForm):
 
     class Meta:
-        model = Deliverable
+        model = Customer_Landline_Number
         fields = '__all__'
 
 
-class OperationsForm(ModelForm):
+class CustomerMobileNumberForm(ModelForm):
 
     class Meta:
-        model = Operations
+        model = Customer_Mobile_Number
+        fields = '__all__'
+
+
+class CustomerEmailForm(ModelForm):
+
+    class Meta:
+        model = Customer_Email
         fields = '__all__'
