@@ -46,7 +46,7 @@ class Customer_Collection(models.Model):
 
 
 class Style(models.Model):
-    # customer = models.ForeignKey(Customer)
+    customer = models.ForeignKey(Customer)
     # brand = models.ForeignKey(Customer_Brand)
     # collection = models.ForeignKey(Customer_Collection)
     style_name = models.CharField(max_length=500)
