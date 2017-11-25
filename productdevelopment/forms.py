@@ -37,3 +37,12 @@ class CustomerEmailForm(ModelForm):
     class Meta:
         model = Customer_Email
         fields = '__all__'
+
+
+class StyleForm(ModelForm):
+
+    class Meta:
+        model = Style
+        fields = '__all__'
+            
+        
