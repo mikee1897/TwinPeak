@@ -12,17 +12,20 @@ class Supplier_Contact_Person(models.Model):
 
 
 class Supplier_Landline_Number(models.Model):
-    supplier = models.ForeignKey(Supplier_Contact_Person, on_delete=models.CASCADE)
+    supplier = models.ForeignKey(
+        Supplier_Contact_Person, on_delete=models.CASCADE)
     landline_number = models.IntegerField()
 
 
 class Supplier_Mobile_Number(models.Model):
-    supplier = models.ForeignKey(Supplier_Contact_Person, on_delete=models.CASCADE)
+    supplier = models.ForeignKey(
+        Supplier_Contact_Person, on_delete=models.CASCADE)
     mobile_number = models.IntegerField()
 
 
 class Supplier_Email (models.Model):
-    supplier = models.ForeignKey(Supplier_Contact_Person, on_delete=models.CASCADE)
+    supplier = models.ForeignKey(
+        Supplier_Contact_Person, on_delete=models.CASCADE)
     email = models.CharField(max_length=100)
 
 

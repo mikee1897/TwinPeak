@@ -15,7 +15,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Customer_Contact_Person',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('contact_name', models.CharField(max_length=500)),
                 ('department', models.CharField(max_length=100)),
             ],
@@ -23,67 +24,90 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Customer_Email',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('email', models.CharField(max_length=500)),
             ],
         ),
         migrations.CreateModel(
             name='Customer_Landline_Number',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('landline_number', models.CharField(max_length=50)),
             ],
         ),
         migrations.CreateModel(
             name='Customer_Mobile_Number',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('mobile_number', models.CharField(max_length=50)),
             ],
         ),
         migrations.CreateModel(
             name='Labor_Cost',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('cutting_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('sewing_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('washing_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('finishing_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('examining_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('pressing_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('packaging_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('final_inspection_cost', models.DecimalField(decimal_places=10, max_digits=19)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('cutting_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('sewing_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('washing_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('finishing_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('examining_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('pressing_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('packaging_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('final_inspection_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
             ],
         ),
         migrations.CreateModel(
             name='Material_Cost',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
             ],
         ),
         migrations.CreateModel(
             name='Overhead_Cost',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('rent_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('utility_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('paper_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('machine_maintenance_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('transportation_gas_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('transportation_maintenance_cost', models.DecimalField(decimal_places=10, max_digits=19)),
-                ('communication_cost', models.DecimalField(decimal_places=10, max_digits=19)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('rent_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('utility_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('paper_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('machine_maintenance_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('transportation_gas_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('transportation_maintenance_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
+                ('communication_cost', models.DecimalField(
+                    decimal_places=10, max_digits=19)),
             ],
         ),
         migrations.CreateModel(
             name='Size_Specifications',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
             ],
         ),
         migrations.CreateModel(
             name='Style',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('style_name', models.CharField(max_length=500)),
                 ('style_id', models.CharField(max_length=500)),
                 ('collection_name', models.CharField(max_length=500)),
@@ -93,7 +117,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Style_Size',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('size', models.CharField(max_length=10)),
             ],
         ),
@@ -192,7 +217,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='deliverable',
             name='size',
-            field=models.CharField(choices=[('32A', '32A'), ('32B', '32B'), ('34A', '34A'), ('34B', '34B'), ('36A', '36A'), ('36B', '36B')], max_length=5),
+            field=models.CharField(choices=[('32A', '32A'), ('32B', '32B'), (
+                '34A', '34A'), ('34B', '34B'), ('36A', '36A'), ('36B', '36B')], max_length=5),
         ),
         migrations.AlterField(
             model_name='operations',

@@ -15,7 +15,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Raw_Material',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('raw_material_name', models.CharField(max_length=100)),
                 ('price', models.DecimalField(decimal_places=10, max_digits=19)),
                 ('quantity', models.DecimalField(decimal_places=10, max_digits=19)),
@@ -24,7 +25,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Raw_Material_Entry',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('quantity', models.DecimalField(decimal_places=10, max_digits=19)),
                 ('date_updated', models.DateTimeField()),
             ],
@@ -32,7 +34,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Raw_Material_Exit',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('quantity', models.DecimalField(decimal_places=10, max_digits=19)),
                 ('date_updated', models.DateTimeField()),
             ],
@@ -40,7 +43,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Supplier_Contact_Person',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('contact_name', models.CharField(max_length=100)),
                 ('department', models.CharField(max_length=100)),
             ],
@@ -48,21 +52,24 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Supplier_Email',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('email', models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
             name='Supplier_Landline_Number',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('landline_number', models.IntegerField()),
             ],
         ),
         migrations.CreateModel(
             name='Supplier_Mobile_Number',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('mobile_number', models.IntegerField()),
             ],
         ),

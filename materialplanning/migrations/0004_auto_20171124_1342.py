@@ -32,36 +32,43 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='supplier_mobile_number',
             name='supplier',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
         ),
         migrations.AddField(
             model_name='supplier_landline_number',
             name='supplier',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
         ),
         migrations.AddField(
             model_name='supplier_email',
             name='supplier',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
         ),
         migrations.AddField(
             model_name='supplier_contact_person',
             name='supplier',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
         ),
         migrations.AddField(
             model_name='raw_material_exit',
             name='raw_material',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Raw_Material'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Raw_Material'),
         ),
         migrations.AddField(
             model_name='raw_material_entry',
             name='raw_material',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Raw_Material'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Raw_Material'),
         ),
         migrations.AddField(
             model_name='raw_material',
             name='supplier',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='materialplanning.Supplier'),
         ),
     ]

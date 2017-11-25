@@ -54,6 +54,7 @@ class Style(models.Model):
     collection_name = models.CharField(max_length=500)
     year = models.DateField()
 
+
 class Style_Size(models.Model):
     style = models.ForeignKey(Style, on_delete=models.CASCADE)
     size = models.CharField(max_length=10)

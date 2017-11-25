@@ -25,67 +25,78 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='customer_contact_person',
             name='customer',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Customer'),
+            field=models.ForeignKey(
+                default=0, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Customer'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='customer_email',
             name='customer',
-            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Customer_Contact_Person'),
+            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE,
+                                    to='productdevelopment.Customer_Contact_Person'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='customer_landline_number',
             name='customer',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Customer_Contact_Person'),
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE,
+                                    to='productdevelopment.Customer_Contact_Person'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='customer_mobile_number',
             name='customer',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Customer_Contact_Person'),
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE,
+                                    to='productdevelopment.Customer_Contact_Person'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='labor_cost',
             name='style',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style'),
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='material_cost',
             name='style_size',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style_Size'),
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style_Size'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='operations',
             name='style',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style'),
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='order',
             name='style',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style'),
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='overhead_cost',
             name='style',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style'),
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='size_specifications',
             name='size',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style_Size'),
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style_Size'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='style_size',
             name='style',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style'),
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to='productdevelopment.Style'),
             preserve_default=False,
         ),
     ]
