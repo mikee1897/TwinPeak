@@ -56,6 +56,7 @@ def add_a_customer(request):
     if request.method == 'POST':
         errors = False
         args = {}
+        customerFormPK = 0
         cf = CustomerForm(request.POST)
         if cf.is_valid():
             cf = cf.save()
@@ -73,27 +74,25 @@ def add_a_customer(request):
                 })
                 if ccpf.is_valid():
                     ccpf = ccpf.save()
+                    # returns a boolean value
                     errors = add_a_customer_contact_person_helper_function(
                         request,
                         ccpf,
                         count)
-                    args.update({'success': True})
         else:
+            # cf is not valid, no instance of customer is saved, cascades on other models
             errors = True
-            args.update({'error': True})
         if errors == True:
-            # no save
-            args.update({'error': True})
-        # TODO return redirect here --> add new order: new style/existing, order details
-        return render(request, 'productdevelopment/add_a_customer.html', args)
-
+            # TODO: do some error stuff
+            pass
+        return redirect('/add_new_style/'+ str(cf.pk))
     else:
         return render(request, 'productdevelopment/add_a_customer.html')
 
 
-def add_new_style(request):
-    if request.method == 'POST':
-
+def add_new_style(request, pk=None):
+    if pk and request.method == 'POST':
+        print(pk)
         return render(request, 'productdevelopment/add_new_style.html')
     else:
         return render(request, 'productdevelopment/add_new_style.html')
