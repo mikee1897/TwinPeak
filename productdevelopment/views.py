@@ -77,13 +77,14 @@ def add_a_customer(request):
                         request,
                         ccpf,
                         count)
-                    args.update({'successfully_added': True})
+                    args.update({'success': True})
         else:
             errors = True
             args.update({'error': True})
         if errors == True:
             # no save
             args.update({'error': True})
+        # TODO return redirect here --> add new order: new style/existing, order details
         return render(request, 'productdevelopment/add_a_customer.html', args)
 
     else:
