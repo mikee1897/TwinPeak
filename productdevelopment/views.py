@@ -1,18 +1,23 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
+import re
 
 """helpes save landline/mobile/email to a customer object instance"""
-def add_a_customer_contact_person_helper_function(request, ccpf):
+def add_a_customer_contact_person_helper_function(
+    request,
+    ccpf,
+    count_
+):
     errors = False
-    customer = Customer_Contact_Person.objects.filter(ccpf.pk)
+    customer = Customer_Contact_Person.objects.filter(pk=ccpf.pk)
     for count in range(
         len(request.POST.getlist(
-            ccpf.contact_name + 'landline'))):
+            'landline_number' + str(count_)))):
         clnf = CustomerLandlineNumberForm({
-            'customer': request.POST.get(customer),
+            'customer': customer,
             'landline_number': request.POST.getlist(
-                ccpf.contact_name + 'landline')[count],
+                'landline_number' + str(count_))[count],
         })
         if clnf.is_valid():
             clnf.save()
@@ -21,11 +26,11 @@ def add_a_customer_contact_person_helper_function(request, ccpf):
 
     for count in range(
         len(request.POST.getlist(
-            ccpf.contact_name + 'mobile'))):
+            'contact_number' + str(count_)))):
         cmnf = CustomerMobileNumberForm({
-            'customer': request.POST.get(customer),
+            'customer': customer,
             'mobile_number': request.POST.getlist(
-                ccpf.contact_name + 'mobile')[count],
+                'contact_number' + str(count_))[count],
         })
         if cmnf.is_valid():
             cmnf.save()
@@ -34,11 +39,11 @@ def add_a_customer_contact_person_helper_function(request, ccpf):
 
     for count in range(
         len(request.POST.getlist(
-            ccpf.contact_name + 'email'))):
+            'email' + str(count_)))):
         cef = CustomerEmailForm({
-            'customer': request.POST.get(customer),
+            'customer': customer,
             'email': request.POST.getlist(
-                ccpf.contact_name + 'email')[count],
+                'email' + str(count_))[count],
         })
         if cef.is_valid():
             cef.save()
@@ -54,9 +59,13 @@ def add_a_customer(request):
         cf = CustomerForm(request.POST)
         if cf.is_valid():
             cf = cf.save()
-            for count in range(len(request.POST.getlist('contact_name'))):
-                contactPersonName = request.POST.getlist('contact_name')[count]
-                contactPersonDepartment = request.POST.getlist('department')[count]
+            # returns the keys matching the regex, ex ['contact_name1', 'contact_name2']
+            contactPersons = [person for person in request.POST if re.match(r'^contact_name[0-9]*', person)]
+            count = 0
+            for count in range(len(contactPersons)):
+                count += 1
+                contactPersonName = request.POST.getlist('contact_name' + str(count))
+                contactPersonDepartment = request.POST.getlist('department' + str(count))
                 ccpf = CustomerContactPersonForm({
                     'customer': Customer.objects.filter(pk=cf.pk),
                     'contact_name': contactPersonName,
@@ -64,7 +73,10 @@ def add_a_customer(request):
                 })
                 if ccpf.is_valid():
                     ccpf = ccpf.save()
-                    errors = add_a_customer_contact_person_helper_function(request, ccpf)
+                    errors = add_a_customer_contact_person_helper_function(
+                        request,
+                        ccpf,
+                        count)
                     args.update({'successfully_added': True})
         else:
             errors = True
