@@ -83,7 +83,10 @@ def add_a_customer(request):
 
 def add_new_style(request):
     if request.method == 'POST':
-        
+
         return render(request, 'productdevelopment/add_new_style.html')
     else:
         return render(request, 'productdevelopment/add_new_style.html')
+
+def add_new_style_customer(request):
+    pass

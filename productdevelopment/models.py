@@ -3,7 +3,7 @@ from django.db import models
 
 class Customer(models.Model):
     customer_name = models.CharField(max_length=500)
-
+    customer_address = models.CharField(max_length=500)
 
 class Customer_Contact_Person(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)

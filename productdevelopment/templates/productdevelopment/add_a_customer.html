@@ -1,4 +1,189 @@
 {% extends 'accounts/admin.html'%}
 
 {% block body %}
+<div class="ui grid">
+	<div class="centered eight wide column">
+		<h2>asd</h2>
+	</div>
+</div>
+
+<div class="ui grid">
+	<div class="ui centered fifteen wide column">
+		<div class="ui raised very padded segment">
+			
+			<form class="ui form">
+				<h4 class="ui dividing header">Customer information</h4>
+
+				<div class="field required">
+			      <label>Customer Name</label>
+			      <input type="text" class="customer_name" name="customer_name" placeholder="Customer Name" 
+			      data-content="Enter the customer's name. ex. Natasha, Avon">
+			    </div>
+			    <div class="field required">
+			      <label>Main Address</label>
+			      <input type="text" class="customer_address" name="customer_address" placeholder="Customer Address"
+			      data-content="The customer's main address can be their office's main branch, 
+			      this is different to their delivery address">
+			    </div>
+
+			    <h4 class="ui dividing header">Company contact person/s</h4>
+
+			    <div class="ui raised segment">
+					<div class="two fields">
+						<div class="field required">
+							<label>Contact Name</label>
+						    <input type="text" class="contact_name" name="contact_name1" placeholder="Contact Name" 
+						      data-content="Enter the contact's name">
+						</div>
+
+						<div class="ui form">
+						  <div class="field">
+						      <label>Department</label>
+						      <div class="ui selection dropdown" data-content="Select which department the contact person is from">
+						          <input type="hidden" class="department" name="department1" >
+						          <i class="dropdown icon"></i>
+						          <div class="default text">Department</div>
+						          <div class="menu">
+						              <div class="item" data-value="Merchandising">Merchandising</div>
+						              <div class="item" data-value="Sales">Sales</div>
+						          </div>
+						      </div>
+						  </div>
+						</div>
+				    </div>
+
+					<div class="ui three column padded grid">
+
+					  	<div class="column">
+					  		<div class="required field">
+					  			<label>Email</label>
+					  		</div>
+					  		<div id="emails">
+						  		<div class="ui two column grid">
+						  			<div class="thirteen wide column">
+						  				<div class="Email">
+									   	 <input type="email" name="email" placeholder="Email address">
+										</div>
+						  			</div>
+						  		</div>
+					  		</div>
+					  		<h4 class="ui dividing header"></h4>
+					  		<button class="ui green basic button" type="button" onclick="addEForm()">Add email form</button>
+						</div>
+
+						<div class="column">
+					  		<div class="field">
+					  			<label>Landline Number</label>
+					  		</div>
+					  		<div id="landline_numbers">
+						  		<div class="ui two column grid">
+						  			<div class="thirteen wide column">
+						  				<div class="Landline Number">
+									   	 <input type="number" name="landline_number" placeholder="Landline number">
+										</div>
+						  			</div>
+						  		</div>
+					  		</div>
+					  		<h4 class="ui dividing header"></h4>
+					  		<button class="ui green basic button" type="button" onclick="addLForm()">Add landline form</button>
+					  	</div>
+
+					  	<div class="column">
+				  			<div class="field">
+					  			<label>Contact Number</label>
+					  		</div>
+					  		<div id="contact_numbers">
+						  		<div class="ui two column grid">
+						  			<div class="thirteen wide column">
+						  				<div class="Contact Number">
+									   	 <input type="number" name="contact_number" placeholder="Contact number">
+										</div>
+						  			</div>
+						  		</div>
+					  		</div>
+					  		<h4 class="ui dividing header"></h4>
+					  		<button class="ui green basic button" type="button" onclick="addCForm()">Add contact number form</button>
+					  	</div>
+
+					</div>
+				</div>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+
+let lFormCount, cFormCount, emailCount;
+
+function domReload() {
+	$('.customer_name, .customer_address, .contact_name')
+	  .popup({
+	    on: 'focus'
+	  })
+	;
+
+	$('.ui.red.basic.button')
+	  .popup({
+	  	on: 'hover'
+	  })
+	;
+
+	$('.ui.selection.dropdown')
+	  .popup({
+	  	on: 'focus'
+	  })
+	;
+
+	$('.ui.selection.dropdown')
+	  .dropdown()
+	;
+}
+
+function remove(node) {
+	node = node.parentNode.parentNode;
+	node.parentNode.removeChild(node)
+	domReload();
+}
+
+function addLForm() {
+	let node = '<div class="ui two column grid"><div class="thirteen wide column"><div class="Landline Number">\
+				<input type="number" name="landline_number" placeholder="Landline number"></div></div>\
+				<div class="three wide column"><button class="ui red basic button" data-content="\
+				Remove this landline field" type="button" onclick="remove(this)">Remove</button>\
+				</div></div>'
+	let tree = document.querySelector('#landline_numbers');
+	tree.insertAdjacentHTML('beforeend', node);
+	domReload();
+}
+
+function addEForm() {
+	let node = '<div class="ui two column grid"><div class="thirteen wide column"><div class="Email">\
+				<input type="email" name="email" placeholder="Email address"></div></div>\
+				<div class="three wide column"><button class="ui red basic button" data-content="\
+				Remove this email field" type="button" onclick="remove(this)">Remove</button>\
+				</div></div>'
+	let tree = document.querySelector('#emails');
+	tree.insertAdjacentHTML('beforeend', node);
+	domReload();
+}
+
+function addCForm() {
+	let node = '<div class="ui two column grid"><div class="thirteen wide column"><div class="Contact Number">\
+				<input type="number" name="contact_number" placeholder="Contact number"></div>\
+				<button class="ui red basic button" data-content="Remove this contact number field" \
+				type="button" onclick="remove(this)">Remove</button></div></div>'
+
+	let tree = document.querySelector('#contact_numbers');
+	tree.insertAdjacentHTML('beforeend', node);
+	domReload();
+}
+
+domReload();
+</script>
 {% endblock %}
