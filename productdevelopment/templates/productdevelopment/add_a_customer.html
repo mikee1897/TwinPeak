@@ -11,7 +11,8 @@
 	<div class="ui centered fifteen wide column">
 		<div class="ui raised very padded segment">
 			
-			<form class="ui form">
+			<form class="ui form" method="POST">
+				{% csrf_token %}
 				<h4 class="ui dividing header">Customer information</h4>
 
 				<div class="field required">
@@ -27,86 +28,91 @@
 			    </div>
 
 			    <h4 class="ui dividing header">Company contact person/s</h4>
+			    <div class="contact_persons_">
+					<div class="ui raised segment">
+						<div class="two fields">
+							<div class="field required">
+								<label>Contact Name</label>
+							    <input type="text" class="contact_name" name="contact_name1" placeholder="Contact Name" 
+							      data-content="Enter the contact's name">
+							</div>
 
-			    <div class="ui raised segment">
-					<div class="two fields">
-						<div class="field required">
-							<label>Contact Name</label>
-						    <input type="text" class="contact_name" name="contact_name1" placeholder="Contact Name" 
-						      data-content="Enter the contact's name">
-						</div>
+							<div class="ui form">
+							  <div class="field">
+							      <label>Department</label>
+							      <div class="ui selection dropdown" data-content="Select which department the contact person is from">
+							          <input type="hidden" class="department" name="department1" >
+							          <i class="dropdown icon"></i>
+							          <div class="default text">Department</div>
+							          <div class="menu">
+							              <div class="item" data-value="Merchandising">Merchandising</div>
+							              <div class="item" data-value="Sales">Sales</div>
+							          </div>
+							      </div>
+							  </div>
+							</div>
+					    </div>
 
-						<div class="ui form">
-						  <div class="field">
-						      <label>Department</label>
-						      <div class="ui selection dropdown" data-content="Select which department the contact person is from">
-						          <input type="hidden" class="department" name="department1" >
-						          <i class="dropdown icon"></i>
-						          <div class="default text">Department</div>
-						          <div class="menu">
-						              <div class="item" data-value="Merchandising">Merchandising</div>
-						              <div class="item" data-value="Sales">Sales</div>
-						          </div>
-						      </div>
-						  </div>
-						</div>
-				    </div>
+						<div class="ui three column padded grid">
 
-					<div class="ui three column padded grid">
-
-					  	<div class="column">
-					  		<div class="required field">
-					  			<label>Email</label>
-					  		</div>
-					  		<div id="emails">
-						  		<div class="ui two column grid">
-						  			<div class="thirteen wide column">
-						  				<div class="Email">
-									   	 <input type="email" name="email" placeholder="Email address">
-										</div>
-						  			</div>
+						  	<div class="column">
+						  		<div class="required field">
+						  			<label>Email</label>
 						  		</div>
-					  		</div>
-					  		<h4 class="ui dividing header"></h4>
-					  		<button class="ui green basic button" type="button" onclick="addEForm()">Add email form</button>
+						  		<div id="emails1">
+							  		<div class="ui two column grid">
+							  			<div class="thirteen wide column">
+							  				<div class="Email">
+										   	 <input type="email" name="email1" placeholder="Email address">
+											</div>
+							  			</div>
+							  		</div>
+						  		</div>
+						  		<h4 class="ui dividing header"></h4>
+						  		<button class="ui green basic button" type="button" onclick="addEForm(1)">Add email form</button>
+							</div>
+
+							<div class="column">
+						  		<div class="field">
+						  			<label>Landline Number</label>
+						  		</div>
+						  		<div id="landline_numbers1">
+							  		<div class="ui two column grid">
+							  			<div class="thirteen wide column">
+							  				<div class="Landline Number">
+										   	 <input type="number" name="landline_number1" placeholder="Landline number">
+											</div>
+							  			</div>
+							  		</div>
+						  		</div>
+						  		<h4 class="ui dividing header"></h4>
+						  		<button class="ui green basic button" type="button" onclick="addLForm(1)">Add landline form</button>
+						  	</div>
+
+						  	<div class="column">
+					  			<div class="field">
+						  			<label>Contact Number</label>
+						  		</div>
+						  		<div id="contact_numbers1">
+							  		<div class="ui two column grid">
+							  			<div class="thirteen wide column">
+							  				<div class="Contact Number">
+										   	 <input type="number" name="contact_number1" placeholder="Contact number">
+											</div>
+							  			</div>
+							  		</div>
+						  		</div>
+						  		<h4 class="ui dividing header"></h4>
+						  		<button class="ui green basic button" type="button" onclick="addCForm(1)">Add contact number form</button>
+						  	</div>
+
 						</div>
-
-						<div class="column">
-					  		<div class="field">
-					  			<label>Landline Number</label>
-					  		</div>
-					  		<div id="landline_numbers">
-						  		<div class="ui two column grid">
-						  			<div class="thirteen wide column">
-						  				<div class="Landline Number">
-									   	 <input type="number" name="landline_number" placeholder="Landline number">
-										</div>
-						  			</div>
-						  		</div>
-					  		</div>
-					  		<h4 class="ui dividing header"></h4>
-					  		<button class="ui green basic button" type="button" onclick="addLForm()">Add landline form</button>
-					  	</div>
-
-					  	<div class="column">
-				  			<div class="field">
-					  			<label>Contact Number</label>
-					  		</div>
-					  		<div id="contact_numbers">
-						  		<div class="ui two column grid">
-						  			<div class="thirteen wide column">
-						  				<div class="Contact Number">
-									   	 <input type="number" name="contact_number" placeholder="Contact number">
-										</div>
-						  			</div>
-						  		</div>
-					  		</div>
-					  		<h4 class="ui dividing header"></h4>
-					  		<button class="ui green basic button" type="button" onclick="addCForm()">Add contact number form</button>
-					  	</div>
-
-					</div>
-				</div>
+  
+					</div>	
+			    </div>
+			 <h4 class="ui dividing header"></h4>
+			 <button class="ui green basic button" type="button" onclick="addContactPerson()">Add Another Contact Person Field</button>
+			 <button class="ui blue basic button" type="submit" >Submit</button>   
 			</form>
 
 		</div>
@@ -118,8 +124,8 @@
 
 {% block javascript %}
 <script type="text/javascript">
+let contactPersonCount = 1;
 
-let lFormCount, cFormCount, emailCount;
 
 function domReload() {
 	$('.customer_name, .customer_address, .contact_name')
@@ -151,37 +157,51 @@ function remove(node) {
 	domReload();
 }
 
-function addLForm() {
+function addLForm(count) {
 	let node = '<div class="ui two column grid"><div class="thirteen wide column"><div class="Landline Number">\
-				<input type="number" name="landline_number" placeholder="Landline number"></div></div>\
+				<input type="number" name="landline_number'+count+'" placeholder="Landline number"></div></div>\
 				<div class="three wide column"><button class="ui red basic button" data-content="\
-				Remove this landline field" type="button" onclick="remove(this)">Remove</button>\
+				Remove this landline field" type="button" onclick="remove(this)">X</button>\
 				</div></div>'
-	let tree = document.querySelector('#landline_numbers');
+	let tree = document.querySelector('#landline_numbers'+count+'');
 	tree.insertAdjacentHTML('beforeend', node);
 	domReload();
 }
 
-function addEForm() {
+function addEForm(count) {
 	let node = '<div class="ui two column grid"><div class="thirteen wide column"><div class="Email">\
-				<input type="email" name="email" placeholder="Email address"></div></div>\
+				<input type="email" name="email'+count+'" placeholder="Email address"></div></div>\
 				<div class="three wide column"><button class="ui red basic button" data-content="\
-				Remove this email field" type="button" onclick="remove(this)">Remove</button>\
+				Remove this email field" type="button" onclick="remove(this)">X</button>\
 				</div></div>'
-	let tree = document.querySelector('#emails');
+	let tree = document.querySelector('#emails'+count+'');
 	tree.insertAdjacentHTML('beforeend', node);
 	domReload();
 }
 
-function addCForm() {
+function addCForm(count) {
 	let node = '<div class="ui two column grid"><div class="thirteen wide column"><div class="Contact Number">\
-				<input type="number" name="contact_number" placeholder="Contact number"></div>\
-				<button class="ui red basic button" data-content="Remove this contact number field" \
-				type="button" onclick="remove(this)">Remove</button></div></div>'
+				<input type="number" name="contact_number'+count+'" placeholder="Contact number"></div></div>\
+				<div class="three wide column"><button class="ui red basic button" data-content="Remove this contact number field" \
+				type="button" onclick="remove(this)">X</button></div></div>'
 
-	let tree = document.querySelector('#contact_numbers');
+	let tree = document.querySelector('#contact_numbers'+count+'');
 	tree.insertAdjacentHTML('beforeend', node);
 	domReload();
+}
+
+function addContactPerson() {
+	contactPersonCount += 1;
+	let node = '<div class="ui raised segment"><div class="two fields"><div class="field required"><label>Contact Name</label> <input type="text" class="contact_name" name="contact_name'+contactPersonCount+'" placeholder="Contact Name" data-content="Enter the contact\'s name"></div><div class="ui form"> <div class="field"> <label>Department</label> <div class="ui selection dropdown" data-content="Select which department the contact person is from"> <input type="hidden" class="department" name="department'+contactPersonCount+'" > <i class="dropdown icon"></i> <div class="default text">Department</div><div class="menu"> <div class="item" data-value="Merchandising">Merchandising</div><div class="item" data-value="Sales">Sales</div></div></div></div></div></div><div class="ui three column padded grid"> <div class="column"> <div class="required field"> <label>Email</label> </div><div id="emails'+contactPersonCount+'"> <div class="ui two column grid"> <div class="thirteen wide column"> <div class="Email"> <input type="email" name="email'+contactPersonCount+'" placeholder="Email address"></div></div></div></div><h4 class="ui dividing header"></h4> <button class="ui green basic button" type="button" onclick="addEForm('+contactPersonCount+')">Add email form</button></div><div class="column"> <div class="field"> <label>Landline Number</label> </div><div id="landline_numbers'+contactPersonCount+'"> <div class="ui two column grid"> <div class="thirteen wide column"> <div class="Landline Number"> <input type="number" name="landline_number'+contactPersonCount+'" placeholder="Landline number"></div></div></div></div><h4 class="ui dividing header"></h4> <button class="ui green basic button" type="button" onclick="addLForm('+contactPersonCount+')">Add landline form</button> </div><div class="column"> <div class="field"> <label>Contact Number</label> </div><div id="contact_numbers'+contactPersonCount+'"> <div class="ui two column grid"> <div class="thirteen wide column"> <div class="Contact Number"> <input type="number" name="contact_number'+contactPersonCount+'" placeholder="Contact number"></div></div></div></div><h4 class="ui dividing header"></h4> <button class="ui green basic button" type="button" onclick="addCForm('+contactPersonCount+')">Add contact number form</button> </div></div><button class="ui red basic button" type="button" onclick="removeContactPerson(this)">Remove this contact person field</button> </div>';
+	let tree = document.querySelector('.contact_persons_');
+	tree.insertAdjacentHTML('beforeend', node);
+	domReload();
+}
+
+function removeContactPerson(node) {
+	node = node.parentNode;
+	node.parentNode.removeChild(node)
+	domReload();	
 }
 
 domReload();

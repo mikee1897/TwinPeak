@@ -54,7 +54,6 @@ def add_a_customer(request):
         cf = CustomerForm(request.POST)
         if cf.is_valid():
             cf = cf.save()
-            """for each customer, save their contact persons"""
             for count in range(len(request.POST.getlist('contact_name'))):
                 contactPersonName = request.POST.getlist('contact_name')[count]
                 contactPersonDepartment = request.POST.getlist('department')[count]
@@ -63,18 +62,16 @@ def add_a_customer(request):
                     'contact_name': contactPersonName,
                     'department': contactPersonDepartment,
                 })
-                """each contact person will get all their landline/mobile/email
-                will be saved"""
                 if ccpf.is_valid():
                     ccpf = ccpf.save()
-                    """ returns a boolean"""
                     errors = add_a_customer_contact_person_helper_function(request, ccpf)
                     args.update({'successfully_added': True})
         else:
             errors = True
-
+            args.update({'error': True})
         if errors == True:
-            cf.delete() # deletes customer and all related models cascade
+            # no save
+            args.update({'error': True})
         return render(request, 'productdevelopment/add_a_customer.html', args)
 
     else:
