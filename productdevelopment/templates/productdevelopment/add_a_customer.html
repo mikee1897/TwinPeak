@@ -8,19 +8,19 @@
 </div>
 
 <div class="ui grid">
-	<div class="ui centered fifteen wide column">
+	<div class="ui centered ten wide column">
 		<div class="ui raised very padded segment">
 			
 			<form class="ui form" method="POST">
 				{% csrf_token %}
 				<h4 class="ui dividing header">Customer information</h4>
 
-				<div class="field required">
+				<div class="ten wide field required">
 			      <label>Customer Name</label>
 			      <input type="text" class="customer_name" name="customer_name" placeholder="Customer Name" 
 			      data-content="Enter the customer's name. ex. Natasha, Avon">
 			    </div>
-			    <div class="field required">
+			    <div class="ten wide field required">
 			      <label>Main Address</label>
 			      <input type="text" class="customer_address" name="customer_address" placeholder="Customer Address"
 			      data-content="The customer's main address can be their office's main branch, 
@@ -112,7 +112,7 @@
 			    </div>
 			 <h4 class="ui dividing header"></h4>
 			 <button class="ui green basic button" type="button" onclick="addContactPerson()">Add Another Contact Person Field</button>
-			 <button class="ui blue basic button" type="submit" >Submit</button>   
+			 <button class="ui blue button" type="submit" >Submit</button>   
 			</form>
 
 		</div>
