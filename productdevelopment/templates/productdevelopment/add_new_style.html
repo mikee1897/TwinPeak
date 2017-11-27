@@ -1,4 +1,287 @@
 {% extends 'accounts/admin.html'%}
 
 {% block body %}
+
+<div class = "ui container">
+    <div>
+        <h1 class="ui dividing header" style = "margin:30px 0px;">New Style</h1>
+        <div class="ui form">
+            <div class="eight wide field required">
+                <label>Customer Name</label>
+                <select class="ui fluid search dropdown"> {# customer Name #}
+                    <option value="">Cutomer Name</option>
+                    <option value="1">Name 1</option>
+                </select>
+            </div>
+            <div class="three fields">
+                <div class="five wide field">
+                    <label>Style Name</label>
+                    <input type="text" placeholder="Style Name" data-content="ex. Violet, HelloKitty"> {# style Name #}
+                </div>
+                <div class="five wide field">
+                    <label>Collection</label>
+                    <input type="text" placeholder="Collection"> {# collection #}
+                </div>
+                <div class="three wide field">
+                    <label>Date</label>
+                    <input type="date" placeholder="Date"> {# date #}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui top attached tabular menu">
+        <a class="item active" data-tab="first">Design Specs</a>
+        <a class="item" data-tab="second">Size Specs</a>
+        <a class="item" data-tab="third">Material Cost</a>
+    </div>
+    <div class="ui bottom attached tab segment active" data-tab="first"> {# first tab #}
+        <h2 class="ui header" style = "text-align:center;">Prototype</h2>
+        <div class="ui form"> {# design specs form START #}
+            <div class = "three fields">
+                    <div class = "field"></div>
+                    <div class = "space" style = "height:300px;width:450px;border:1px solid grey;border-radius:5px;position:relative;"> {# design image container #}
+                        <img src ="" style="width:100%;height:100%;position:absolute;"> {# design image #}
+                    </div>  
+                    <div class = "field"></div>
+            </div>
+            <div class = "three fields">
+                    <div class = "field"></div>
+                    <div class = "seven wide field">
+                        <input type = "file"> {# design input file image #}
+                    </div>
+                    <div class = "field"></div>
+            </div>    
+            <div class="six fields">
+                <div class = "field"></div>
+                <div class="six wide field">
+                    <label>Material Name</label>
+                    <select class="ui fluid search dropdown"> {# design material inptut #}
+                        <option value="">Material Name</option>
+                        <option value="1">Material 1</option>
+                    </select>
+                </div>
+                <div class="three wide field">
+                    <label>Width</label>
+                    <input type="text" placeholder="Part Name"> {# design width input #}
+                </div>
+                <div class="three wide field">
+                    <label>Color</label>
+                    <input type="text" placeholder="Measurement"> {# design measurement input #}
+                </div>
+                <div class="three wide field">
+                    <button class="ui icon green basic button" onclick="addForm(1)" style = "margin-top:23px;"> {# plus button #}
+                            Add Material 
+                    </button>
+                  
+                </div>
+                <div class = "field"></div>
+            </div>
+        </div>  {# design specs form END #}
+
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="second">  {# second tab #}
+        <h2 class="ui header" style = "text-align:center;">Size Specification</h2>
+        <div class="ui form">  {# size specs form START #}
+            <div class = "three fields">
+                    <div class = "field"></div>
+                    <div class = "space" style = "height:300px;width:450px;border:1px solid grey;border-radius:5px;position:relative;"> {# size image container #}
+                        <img src ="" style="width:100%;height:100%;position:absolute;"> {# size image #}
+                    </div>  
+                    <div class = "field"></div>
+            </div>
+            <div class = "three fields">
+                    <div class = "field"></div>
+                    <div class = "seven wide field">
+                        <input type = "file"> {# size input file image #}
+                    </div>
+                    <div class = "field"></div>
+            </div>    
+            <div class="seven fields">
+                <div class = "field"></div>
+                <div class="two wide field">
+                    <label>Part</label>
+                    <input type="text" placeholder="ZZX">  {# size input part #}
+                </div>
+                <div class="six wide field">
+                    <label>Part name</label>
+                    <input type="text" placeholder="Part Name"> {# size input part name #}
+                </div>
+                <div class="two wide field">
+                    <label>Measurement</label>
+                    <input type="text" placeholder="Measurement"> {# size input measurement #}
+                </div>
+                <div class="two wide field">
+                    <label>Tolerance</label>
+                    <input type="text" placeholder="XX"> {# size input tolerance #}
+                </div>
+                <div class="one wide field">
+                    <button class="ui icon button" style = "font-size:15px;padding:0px;margin-top:33px;background:transparent;"> {# plus button #}
+                            <i class="ui teal plus icon"></i> 
+                    </button>
+                    <button class="ui icon button" style = "font-size:15px;padding:0px;margin-top:33px;background:transparent;"> {# minus button #}
+                            <i class="ui teal minus icon"></i> 
+                    </button>
+                </div>
+                <div class = "field"></div>
+            </div>
+        </div>  {# design specs form END#}
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="third"> {# third tab #}
+        <div class="ui form"> {# material cost form START #}
+            <div class = "two wide field" style = "margin-left:130px;">
+                <label>Size</label>
+                <select class="ui dropdown"> {# material cost input size #}
+                    <option value="">Size</option>
+                    <option value="1">32A</option>
+                </select> 
+            </div>
+            {# Fabics #}
+            <h2 class="ui header" style = "text-align:center;">Fabrics</h2>
+            <div class="eight fields">
+                <div class = "field"></div>
+                <div class = "four wide field">
+                    <label>Material Name</label> {# material cost->fabrics->input material name #}
+                    <select class="ui fluid search dropdown">
+                        <option value="">Material Name</option>
+                        <option value="1">Material 1</option>
+                    </select>
+                </div>
+                <div class = "field">
+                    <label>Cost per Unit</label> 
+                    <input type ="number" placeholder="ZZ"> {# material cost->fabrics->input cost per unit #}
+                </div>
+                <div class = "field">
+                    <label>Measurement</label>
+                    <select class="ui fluid search dropdown"> {# material cost->fabrics->input measurement #}
+                        <option value="">cm</option>
+                        <option value="1">mm</option>
+                    </select>
+                </div>
+                <div class = "field">
+                        <label>Consumption</label>
+                        <input type ="number" placeholder="ZZ"> {# material cost->fabrics->input consumption #}
+                </div>
+                <div class = "two wide field">
+                    <label>Sub-Total</label>
+                    <input type ="number" placeholder="ZZ"> {# material cost->fabrics->input sub-total #}
+                </div>
+                <div class="one wide field">
+                    <button class="ui icon button" style = "font-size:15px;padding:0px;margin-top:33px;background:transparent;"> {# minus button #}
+                            <i class="ui teal plus icon"></i> 
+                    </button>
+                    <button class="ui icon button" style = "font-size:15px;padding:0px;margin-top:33px;background:transparent;"> {# minus button #}
+                            <i class="ui teal minus icon"></i> 
+                    </button>
+                </div>
+                <div class = "field"></div>
+            </div>
+
+            {# Sewing Accessories #}
+            <h2 class="ui header" style = "text-align:center;">Sewing Accessories</h2> 
+            <div class="eight fields">
+                <div class = "field"></div>
+                <div class = "four wide field">
+                    <label>Material Name</label>
+                    <select class="ui fluid search dropdown"> {# material cost->sewing accessories->input material name #}
+                        <option value="">Material Name</option>
+                        <option value="1">Material 1</option>
+                    </select>
+                </div>
+                <div class = "field">
+                    <label>Cost per Unit</label>
+                    <input type ="number" placeholder="ZZ"> {# material cost->sewing accessories->input cost per unit #}
+                </div>
+                <div class = "field">
+                    <label>Measurement</label>
+                    <select class="ui fluid search dropdown"> {# material cost->sewing accessories->input measurement #}
+                        <option value="">cm</option>
+                        <option value="1">mm</option>
+                    </select>
+                </div>
+                <div class = "field">
+                        <label>Consumption</label>
+                        <input type ="number" placeholder="ZZ"> {# material cost->sewing accessories->input consumption #}
+                </div>
+                <div class = "two wide field">
+                    <label>Sub-Total</label>
+                    <input type ="number" placeholder="ZZ">
+                </div>
+                <div class="one wide field">
+                    <button class="ui icon button" style = "font-size:15px;padding:0px;margin-top:33px;background:transparent;"> {# plus button #}
+                            <i class="ui teal plus icon"></i> 
+                    </button>
+                    <button class="ui icon button" style = "font-size:15px;padding:0px;margin-top:33px;background:transparent;"> {# minus button #}
+                            <i class="ui teal minus icon"></i> 
+                    </button>
+                </div>
+                <div class = "field"></div>
+            </div>
+
+            {# Packing Accessories #}
+            <h2 class="ui header" style = "text-align:center;">Packing Accessories</h2>
+            <div class="eight fields">
+                <div class = "field"></div>
+                <div class = "four wide field">
+                    <label>Material Name</label>
+                    <select class="ui fluid search dropdown"> {# material cost->packing accessories->input material name #}
+                        <option value="">Material Name</option>
+                        <option value="1">Material 1</option>
+                    </select>
+                </div>
+                <div class = "field">
+                    <label>Cost per Unit</label> {# material cost->packing accessories->input cost per unit #}
+                    <input type ="number" placeholder="ZZ">
+                </div>
+                <div class = "field">
+                    <label>Measurement</label>
+                    <select class="ui fluid search dropdown"> {# material cost->packing accessories->input measurement #}
+                        <option value="">cm</option>
+                        <option value="1">mm</option>
+                    </select>
+                </div>
+                <div class = "field">
+                        <label>Consumption</label> 
+                        <input type ="number" placeholder="ZZ"> {# material cost->packing accessories->input consumption #}
+                </div>
+                <div class = "two wide field">
+                    <label>Sub-Total</label>
+                    <input type ="number" placeholder="ZZ"> {# material cost->packing accessories->input sub-total #}
+                </div>
+                <div class="one wide field">
+                    <button class="ui icon button" style = "font-size:15px;padding:0px;margin-top:33px;background:transparent;"> {# plus button #}
+                            <i class="ui teal plus icon"></i> 
+                    </button>
+                    <button class="ui icon button" style = "font-size:15px;padding:0px;margin-top:33px;background:transparent;"> {# minus button #}
+                            <i class="ui teal minus icon"></i> 
+                    </button>
+                </div>
+                <div class = "field"></div>
+            </div>
+            
+            <div class = "two fields">
+                <div class = "twelve wide field"></div>
+                <div class = "three wide field">
+                    <label>Total</label>
+                    <input type ="number" placeholder="ZZ"> 
+                </div>    
+            </div>
+            
+            
+            
+
+        </div> {# material cost form END #}
+    </div>
+
+    <button class="ui teal right floated button" style = "margin:30px 0px;">Submit</button>
+
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    $(document).ready(function() {
+        $('.menu .item').tab();
+
+    });
+</script>
 {% endblock %}
